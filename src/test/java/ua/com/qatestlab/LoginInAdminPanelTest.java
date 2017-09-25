@@ -30,13 +30,13 @@ public class LoginInAdminPanelTest {
         driver.findElement(By.id("passwd")).sendKeys("Xcg7299bnSmMuRLp9ITw");
         // Click "submitLogin" button
         driver.findElement(By.name("submitLogin")).submit();
-        driver.manage().timeouts().implicitlyWait(7000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
         //Click "header_logout" button
         driver.findElement(By.className("employee_avatar_small")).click();
-        driver.manage().timeouts().implicitlyWait(500, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.findElement(By.cssSelector("#header_logout")).click();
         // Get text from header of the login page
-        driver.manage().timeouts().implicitlyWait(2000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         String header = driver.getTitle();
         // Verify that header equals "prestashop-automation > Панель администратора (PrestaShop™)"
         Assert.assertEquals(header, "prestashop-automation > Панель администратора (PrestaShop™)");
@@ -45,7 +45,10 @@ public class LoginInAdminPanelTest {
     @AfterClass
     public void tearDown() {
         // Close all browser windows and safely end the session
-        if (driver != null) driver.quit();
+        if (driver != null) {
+            driver.manage().deleteAllCookies();
+            driver.quit();
+        }
     }
 
 }
