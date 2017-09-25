@@ -38,6 +38,7 @@ public class LoginInAdminPanelTest {
         // Get text from header of the login page
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         String header = driver.getTitle();
+        System.out.println("Page title is: " + header);
         // Verify that header equals "prestashop-automation > Панель администратора (PrestaShop™)"
         Assert.assertEquals(header, "prestashop-automation > Панель администратора (PrestaShop™)");
     }
