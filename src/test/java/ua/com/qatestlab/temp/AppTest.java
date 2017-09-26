@@ -1,4 +1,4 @@
-package ua.com.qatestlab;
+package ua.com.qatestlab.temp;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

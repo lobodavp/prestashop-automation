@@ -1,4 +1,4 @@
-package ua.com.qatestlab;
+package ua.com.qatestlab.temp;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

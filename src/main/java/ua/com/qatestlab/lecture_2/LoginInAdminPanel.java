@@ -1,6 +1,5 @@
-package ua.com.qatestlab;
+package ua.com.qatestlab.lecture_2;
 
-import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -14,23 +13,27 @@ public class LoginInAdminPanel {
         WebDriver driver = new FirefoxDriver();
         // driver.navigate().to("http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/");
         driver.get("http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/");
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+//        System.out.println("Page title is: " + driver.getTitle());
+//Login page
         driver.findElement(By.id("email")).sendKeys("webinar.test@gmail.com");
         driver.findElement(By.id("passwd")).sendKeys("Xcg7299bnSmMuRLp9ITw");
         driver.findElement(By.name("submitLogin")).submit();
-        driver.manage().timeouts().implicitlyWait(7, TimeUnit.SECONDS);
+//exit from the dashboard panel page
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.className("employee_avatar_small")).click();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.findElement(By.cssSelector("#header_logout")).click();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        String header = driver.getTitle();
-        Assert.assertEquals(header, "prestashop-automation > Панель администратора (PrestaShop™)");
-        System.out.println("Page title is: " + header);
+////Check of returning to the Login page
+//        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+////        Assert.assertEquals(driver.getTitle(), "prestashop-automation > Панель администратора (PrestaShop™)");
+//        System.out.println("Page title is: " + driver.getTitle());
 //        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
 //            public Boolean apply(WebDriver d) {
 //                return d.getTitle().toLowerCase().startsWith("prestashop");
 //            }
 //        });
+//browser close
             driver.manage().deleteAllCookies();
             driver.quit();
     }

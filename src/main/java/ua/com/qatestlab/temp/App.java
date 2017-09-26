@@ -1,4 +1,4 @@
-package ua.com.qatestlab;
+package ua.com.qatestlab.temp;
 
 public class App 
 {
