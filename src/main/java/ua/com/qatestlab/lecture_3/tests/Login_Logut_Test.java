@@ -20,22 +20,11 @@ public class Login_Logut_Test extends BaseTest {
 
         System.out.println("Page title is: " + driver.getTitle());
         DashboardPage dashboardPage = new DashboardPage(driver);
-        dashboardPage.clickLogoutImage();
-        dashboardPage.clicklogoutButton();
-        Assert.assertEquals(driver.getTitle(), "prestashop-automation > Панель администратора (PrestaShop™)");
-//        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-//            public Boolean apply(WebDriver driver) {
-//                return driver.getTitle().toLowerCase().startsWith("prestashop");
-//            }
-//        });
+//        dashboardPage.clickLogoutImage();
+//        dashboardPage.clicklogoutButton();
+        dashboardPage.clicklogoutButtonWithJS();
+
         System.out.println("Page title is: " + driver.getTitle());
-
-        //dashboardPage.scrollPageDown();
-        //dashboardPage.selectOrdersItem();
-        //dashboardPage.clicklogoutButtonWithJS();
-        //dashboardPage.clickLogoutImage();
-        //dashboardPage.clicklogoutButton();
-
         quitDriver(driver);
     }
 }

@@ -1,4 +1,4 @@
-package ua.com.qatestlab.lecture_3.pages;
+package ua.com.qatestlab.temp.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -20,9 +20,9 @@ public class DashboardPage {
         this.driver = driver;
     }
 
-//        public void checkDasboardMenu() {
-//        driver.findElement(By.xpath("//*[@id='subtab-AdminParentOrders']/a/span")).click();
-//        Assert.assertEquals(getTitle(driver), "Заказы • prestashop-automation");
+    public void checkDasboardMenu() {
+        driver.findElement(By.xpath("//*[@id='subtab-AdminParentOrders']/a/span")).click();
+        Assert.assertEquals(getTitle(driver), "Заказы • prestashop-automation");
 
 //        driver.findElement(By.xpath("//*[@id='subtab-AdminCatalog']/a/span")).click();
 //        Assert.assertEquals(getTitle(driver), "товары • prestashop-automation");
@@ -53,16 +53,16 @@ public class DashboardPage {
 //
 //        driver.findElement(By.xpath("//*[@id='subtab-AdminAdvancedParameters']/a/span")).click();
 //        Assert.assertEquals(getTitle(driver), "Information • prestashop-automation");
-//
-//        driver.findElement(By.xpath("//*[@id='tab-AdminDashboard']/a/span")).click();
-//        Assert.assertEquals(getTitle(driver), "Dashboard • prestashop-automation");
-//    }
 
-//    private String getTitle(WebDriver driver) {
-//        driver.navigate().refresh();
-//        System.out.println("Page title after refreshing is: " + driver.getTitle());
-//        return driver.getTitle();
-//    }
+        driver.findElement(By.xpath("//*[@id='tab-AdminDashboard']/a/span")).click();
+        Assert.assertEquals(getTitle(driver), "Dashboard • prestashop-automation");
+    }
+
+    private String getTitle(WebDriver driver) {
+        driver.navigate().refresh();
+        System.out.println("Page title after refreshing is: " + driver.getTitle());
+        return driver.getTitle();
+    }
 
     public void clickLogoutImage(){
         WebDriverWait wait = new WebDriverWait(driver, 10);
