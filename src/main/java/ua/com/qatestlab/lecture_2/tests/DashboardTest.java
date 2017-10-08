@@ -20,7 +20,7 @@ public class DashboardTest extends BaseTest {
         DashboardPage dashboardPage = new DashboardPage(driver);
         System.out.println("Page title is: " + driver.getTitle());
         Assert.assertEquals(driver.getTitle(), "prestashop-automation > Панель администратора (PrestaShop™)");
-        dashboardPage.checkDasboardMenu();
+        dashboardPage.checkDasboardMenuItems();
         dashboardPage.clickLogoutImage();
         dashboardPage.clicklogoutButton();
 
