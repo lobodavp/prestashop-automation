@@ -6,7 +6,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import ua.com.qatestlab.lecture_3.utils.Properties;
-import ua.com.qatestlab.utils.EventHandler;
+import ua.com.qatestlab.lecture_3.utils.EventHandler;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +41,7 @@ public abstract class BaseTest {
 
     public static EventFiringWebDriver getConfiguredDriver(){
         WebDriver driver = getDriver();
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         EventFiringWebDriver wrappedDriver = new EventFiringWebDriver(driver);
         wrappedDriver.register(new EventHandler());
