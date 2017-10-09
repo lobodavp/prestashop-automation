@@ -31,7 +31,7 @@ public class MyTest extends BaseTest {
         addCategoryPage.fillNewCategoryInput();
         addCategoryPage.scrollPageDown();
         addCategoryPage.pushSaveNewCategoryButton();
-        addCategoryPage.checkConfirmationText();
+        addCategoryPage.checkConfirmationMessage();
         addCategoryPage.gotoCategoryList();
 
         System.out.println("Page title is: " + driver.getTitle());

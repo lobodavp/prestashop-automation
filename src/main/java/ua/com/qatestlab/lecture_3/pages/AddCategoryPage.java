@@ -44,7 +44,7 @@ public class AddCategoryPage {
         saveNewCategoryButtonElement.submit();
     }
 
-    public void checkConfirmationText() {
+    public void checkConfirmationMessage() {
         WebElement newCategoryConfirmationElement = driver.findElement(newCategoryConfirmation);
         Assert.assertEquals("×\n" + "Создано", newCategoryConfirmationElement.getText());
         System.out.println("Confirmation message is present at the page: " + driver.getTitle());
