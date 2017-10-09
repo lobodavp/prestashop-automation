@@ -1,5 +1,6 @@
 package ua.com.qatestlab.lecture_3.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -12,6 +13,7 @@ public class AddCategoryPage {
     private By categoryNameInput = By.cssSelector("#name_1");
     private By saveNewCategoryButton = By.cssSelector(".process-icon-save");
     private By gotoCategoryList = By.cssSelector("#desc-category-back i");
+    private By newCategoryConfirmation = By.xpath("*//div[@class='bootstrap'][2] /div");
     static final String newCategoryName = "New category";
 
     public AddCategoryPage(EventFiringWebDriver driver) {
@@ -40,6 +42,12 @@ public class AddCategoryPage {
         wait.until(ExpectedConditions.elementToBeClickable(saveNewCategoryButton));
         WebElement saveNewCategoryButtonElement = driver.findElement(categoryNameInput);
         saveNewCategoryButtonElement.submit();
+    }
+
+    public void checkConfirmationText() {
+        WebElement newCategoryConfirmationElement = driver.findElement(newCategoryConfirmation);
+        Assert.assertEquals("×\n" + "Создано", newCategoryConfirmationElement.getText());
+        System.out.println("Confirmation message is present at the page: " + driver.getTitle());
     }
 
     public void gotoCategoryList() {
