@@ -18,30 +18,21 @@ public abstract class BaseTest {
         switch (browser) {
             case "firefox":
                 System.setProperty("webdriver.gecko.driver", "C:\\Program Files\\Java\\web-drivers\\geckodriver.exe");
-//                System.setProperty(
-//                        "webdriver.gecko.driver",
-//                        new File(ua.com.qatestlab.lecture_2.tests.BaseTest.class.getResource("/geckodriver.exe").getFile()).getPath());
                 return new FirefoxDriver();
             case "ie":
             case "internet explorer":
-//                System.setProperty("webdriver.ie.driver", "C:\\Program Files\\Java\\web-drivers\\IEDriverServer.exe");
-                System.setProperty(
-                        "webdriver.ie.driver",
-                        new File(BaseTest.class.getResource("/IEDriverServer.exe").getFile()).getPath());
+                System.setProperty("webdriver.ie.driver", "C:\\Program Files\\Java\\web-drivers\\IEDriverServer.exe");
                 return new InternetExplorerDriver();
             case "chrome":
             default:
                 System.setProperty("webdriver.chrome.driver", "C:\\Program Files\\Java\\web-drivers\\chromedriver.exe");
-//                System.setProperty(
-//                        "webdriver.chrome.driver",
-//                        new File(ua.com.qatestlab.lecture_2.tests.BaseTest.class.getResource("/chromedriver.exe").getFile()).getPath());
                 return new ChromeDriver();
         }
     }
 
     public static EventFiringWebDriver getConfiguredDriver(){
         WebDriver driver = getDriver();
-//        driver.manage().window().maximize();
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         EventFiringWebDriver wrappedDriver = new EventFiringWebDriver(driver);
         wrappedDriver.register(new EventHandler());
