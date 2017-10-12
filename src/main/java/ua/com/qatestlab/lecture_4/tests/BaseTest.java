@@ -1,14 +1,13 @@
-package ua.com.qatestlab.lecture_3.tests;
+package ua.com.qatestlab.lecture_4.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import ua.com.qatestlab.lecture_3.utils.Properties;
-import ua.com.qatestlab.lecture_3.utils.EventHandler;
+import ua.com.qatestlab.lecture_4.utils.Properties;
+import ua.com.qatestlab.lecture_4.utils.EventHandler;
 
-//import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 public abstract class BaseTest {

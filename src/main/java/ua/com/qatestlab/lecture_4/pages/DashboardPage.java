@@ -1,4 +1,4 @@
-package ua.com.qatestlab.lecture_3.pages;
+package ua.com.qatestlab.lecture_4.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,12 +15,12 @@ public class DashboardPage {
         this.driver = driver;
     }
 
-    public void selectCatalogItem() {
+    public void selectGoodsItem() {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.elementToBeClickable(catalogTab));
-        WebElement TabElement = driver.findElement(catalogTab);
+        WebElement tabElement = driver.findElement(catalogTab);
         Actions actions = new Actions(driver);
-        actions.moveToElement(TabElement).build().perform();
-        TabElement.findElements(By.cssSelector("li")).get(1).click();
+        actions.moveToElement(tabElement).build().perform();
+        tabElement.findElements(By.cssSelector("li")).get(0).click();
     }
 }

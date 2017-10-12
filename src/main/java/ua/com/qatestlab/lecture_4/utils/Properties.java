@@ -1,4 +1,4 @@
-package ua.com.qatestlab.lecture_3.utils;
+package ua.com.qatestlab.lecture_4.utils;
 
 import org.openqa.selenium.remote.BrowserType;
 
