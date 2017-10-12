@@ -105,7 +105,7 @@ public class MakeProductPage {
         return df2.format(productPrice);
     }
 
-    public void ativateProduct() {
+    public void activateProduct() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(productActivation));
         WebElement productActivateElement = driver.findElement(productActivation);

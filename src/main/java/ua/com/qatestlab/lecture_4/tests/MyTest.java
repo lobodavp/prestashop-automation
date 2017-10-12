@@ -31,8 +31,7 @@ public class MyTest extends BaseTest {
         makeProductPage.fillProductQuantityInput();
         makeProductPage.clickPriceLink();
         makeProductPage.fillProductPriceInput();
-        makeProductPage.ativateProduct();
-        makeProductPage.ativateProduct();
+        makeProductPage.activateProduct();
         makeProductPage.pushSaveProductButton();
     }
 }
