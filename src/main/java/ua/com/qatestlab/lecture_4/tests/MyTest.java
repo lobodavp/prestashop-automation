@@ -33,7 +33,6 @@ public class MyTest extends BaseTest {
         makeGoodsPage.fillProductPriceInput();
         makeGoodsPage.ativateProduct();
         makeGoodsPage.ativateProduct();
-//        makeGoodsPage.closeConfirmationMessage();
         makeGoodsPage.pushSaveProductButton();
     }
 }
