@@ -9,8 +9,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class GoodsPage {
     private EventFiringWebDriver driver;
     private By addProductIcon = By.cssSelector("a#page-header-desc-configuration-add > span");
-    private By filterCategoryByName = By.cssSelector("#table-category tr th:nth-child(3) a > .icon-caret-up");
-    private By newCategory = By.xpath("*//td[contains(text(),'New category')]");
 
     public GoodsPage(EventFiringWebDriver driver) {
         this.driver = driver;

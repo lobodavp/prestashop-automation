@@ -35,12 +35,5 @@ public class MyTest extends BaseTest {
         makeGoodsPage.ativateProduct();
 //        makeGoodsPage.closeConfirmationMessage();
         makeGoodsPage.pushSaveProductButton();
-
-//        addCategoryPage.scrollPageDown();
-//        addCategoryPage.checkConfirmationMessage();
-//        addCategoryPage.gotoCategoryList();
-//
-//        System.out.println("Page title is: " + driver.getTitle());
-//        categoriesPage.sortCategoryByName();
     }
 }
