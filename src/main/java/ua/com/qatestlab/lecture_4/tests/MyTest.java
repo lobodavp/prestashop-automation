@@ -24,15 +24,15 @@ public class MyTest extends BaseTest {
         System.out.println("Page title is: " + driver.getTitle());
         goodsPage.clickAddProduct();
 
-        MakeGoodsPage makeGoodsPage = new MakeGoodsPage(driver);
+        MakeProductPage makeProductPage = new MakeProductPage(driver);
         System.out.println("Page title is: " + driver.getTitle());
-        makeGoodsPage.fillNewProductInput();
-        makeGoodsPage.clickProductQuantityLink();
-        makeGoodsPage.fillProductQuantityInput();
-        makeGoodsPage.clickPriceLink();
-        makeGoodsPage.fillProductPriceInput();
-        makeGoodsPage.ativateProduct();
-        makeGoodsPage.ativateProduct();
-        makeGoodsPage.pushSaveProductButton();
+        makeProductPage.fillNewProductInput();
+        makeProductPage.clickProductQuantityLink();
+        makeProductPage.fillProductQuantityInput();
+        makeProductPage.clickPriceLink();
+        makeProductPage.fillProductPriceInput();
+        makeProductPage.ativateProduct();
+        makeProductPage.ativateProduct();
+        makeProductPage.pushSaveProductButton();
     }
 }

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.text.DecimalFormat;
 import java.util.Random;
 
-public class MakeGoodsPage {
+public class MakeProductPage {
     private EventFiringWebDriver driver;
     private By productNameInput = By.cssSelector("#form_step1_name_1");
     private By productQuantityLink = By.xpath("*//a[@href='#step3']");
@@ -26,7 +26,7 @@ public class MakeGoodsPage {
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
 
-    public MakeGoodsPage(EventFiringWebDriver driver) {
+    public MakeProductPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 
