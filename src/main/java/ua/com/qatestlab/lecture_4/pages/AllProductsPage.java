@@ -26,10 +26,11 @@ public class AllProductsPage {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(nextLink));
         WebElement nextProductsPageLink = driver.findElement(nextLink);
-        if (nextProductsPageLink.isEnabled()) {
+        if (!nextProductsPageLink.isEnabled()) clickNewProductPageLink();
+        else {
             clickNextProductsPageLink();
             clickNewProductPageLink();
-        } else clickNewProductPageLink();
+        }
     }
 
     private void clickNextProductsPageLink() {
