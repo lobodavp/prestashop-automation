@@ -25,27 +25,32 @@ public class MakeProductPage {
     private By saveProductButton = By.cssSelector("div>button>span:nth-child(1)");
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
+    static String newProductName;
+    static String newProductQuantity;
+    static String newProductPrice;
 
     public MakeProductPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 
-    public void fillNewProductInput() {
+    public void fillNewProductNameInput() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(productNameInput));
         WebElement productNameInputElement = driver.findElement(productNameInput);
         productNameInputElement.sendKeys(getRandomProductName());
     }
 
-    private static String getRandomProductName() {
+    private String getRandomProductName() {
         String s = "abcdefgh";
-        StringBuffer newProductName = new StringBuffer();
+        StringBuffer productName = new StringBuffer();
 
         for (int i = 0; i < PRODUCT_NAME_LENGTH; i++) {
-            newProductName.append(s.charAt(new Random().nextInt(s.length())));
+            productName.append(s.charAt(new Random().nextInt(s.length())));
         }
-        System.out.println("New product name is: " + newProductName.toString());
-        return newProductName.toString();
+
+        newProductName = productName.toString();
+        System.out.println("New product name is: " + newProductName);
+        return newProductName;
     }
 
     public void clickProductQuantityLink() {
@@ -65,7 +70,7 @@ public class MakeProductPage {
         productQuantityInputElement.sendKeys(getRandomProductQuantity());
     }
 
-    private static String getRandomProductQuantity() {
+    private String getRandomProductQuantity() {
         String s = "0123456789";
         StringBuffer productQuantity = new StringBuffer();
 
@@ -74,8 +79,10 @@ public class MakeProductPage {
         }
         if (productQuantity.toString() == "00") getRandomProductQuantity();
         if (productQuantity.toString() == "0") getRandomProductQuantity();
-        System.out.println("Product quantity is: " + productQuantity.toString());
-        return productQuantity.toString();
+
+        newProductQuantity = productQuantity.toString();
+        System.out.println("Product quantity is: " + newProductQuantity);
+        return newProductQuantity;
     }
 
     public void clickPriceLink() {
@@ -95,14 +102,15 @@ public class MakeProductPage {
         productPriceInputElement.sendKeys(getRandomProductPrice().toString());
     }
 
-    private static String getRandomProductPrice() {
+    private String getRandomProductPrice() {
         DecimalFormat df2 = new DecimalFormat(".##");
         double start = 0.1;
         double end = 100;
         double random = new Random().nextDouble();
-        double productPrice = start + (random * (end - start));
-        System.out.println("Product price is: " + df2.format(productPrice));
-        return df2.format(productPrice);
+        double price = start + (random * (end - start));
+        newProductPrice = df2.format(price);
+        System.out.println("Product price is: " + newProductPrice);
+        return newProductPrice;
     }
 
     public void activateProduct() {

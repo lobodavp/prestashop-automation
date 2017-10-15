@@ -20,18 +20,34 @@ public class MyTest extends BaseTest {
         System.out.println("Page title is: " + driver.getTitle());
         dashboardPage.selectGoodsItem();
 
-        GoodsPage goodsPage = new GoodsPage(driver);
+        ProductsPage productsPage = new ProductsPage(driver);
         System.out.println("Page title is: " + driver.getTitle());
-        goodsPage.clickAddProduct();
+        productsPage.clickAddProduct();
 
         MakeProductPage makeProductPage = new MakeProductPage(driver);
         System.out.println("Page title is: " + driver.getTitle());
-        makeProductPage.fillNewProductInput();
+        makeProductPage.fillNewProductNameInput();
         makeProductPage.clickProductQuantityLink();
         makeProductPage.fillProductQuantityInput();
         makeProductPage.clickPriceLink();
         makeProductPage.fillProductPriceInput();
         makeProductPage.activateProduct();
         makeProductPage.pushSaveProductButton();
+
+        MainPage mainPage = new MainPage(driver);
+        mainPage.open();
+        System.out.println("Page title is: " + driver.getTitle());
+        mainPage.clickAllProductsLink();
+
+        AllProductsPage allProductsPage = new AllProductsPage(driver);
+        System.out.println("Page title is: " + driver.getTitle());
+        allProductsPage.scrollPageDown();
+        allProductsPage.openNewProductPage();
+
+        NewProductPage newProductPage = new NewProductPage(driver);
+        System.out.println("Page title is: " + driver.getTitle());
+        newProductPage.checkProductName();
+        newProductPage.checkProductQuantity();
+        newProductPage.checkProductPrice();
     }
 }
