@@ -30,9 +30,9 @@ public class SomeTest {
 
     @AfterClass
     public void tearDown() {
+        driver.manage().deleteAllCookies();
         driver.quit();
     }
-
 
     @Test
     public void loginTest() {
@@ -72,6 +72,5 @@ public class SomeTest {
     @Test
     public void test3(String name) {
         Reporter.log(String.format("Hello, %s!", name));
-
     }
 }

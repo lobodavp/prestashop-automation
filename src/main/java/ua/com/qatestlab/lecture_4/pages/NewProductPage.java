@@ -14,8 +14,8 @@ import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductPrice;
 public class NewProductPage {
     private final EventFiringWebDriver driver;
     private final By currentName = By.cssSelector("h1.h1");
-    private final By currentPrice = By.cssSelector("div.current-price>span");
     private final By currentQuantity = By.cssSelector("div.product-quantities>span");
+    private final By currentPrice = By.cssSelector("div.current-price>span");
 
     public NewProductPage(EventFiringWebDriver driver) {
         this.driver = driver;

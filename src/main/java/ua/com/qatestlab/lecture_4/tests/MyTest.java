@@ -18,7 +18,7 @@ public class MyTest extends BaseTest {
 
         DashboardPage dashboardPage = new DashboardPage(driver);
         System.out.println("Page title is: " + driver.getTitle());
-        dashboardPage.selectGoodsItem();
+        dashboardPage.selectProductsItem();
 
         ProductsPage productsPage = new ProductsPage(driver);
         System.out.println("Page title is: " + driver.getTitle());

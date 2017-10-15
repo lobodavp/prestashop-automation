@@ -15,7 +15,7 @@ public class DashboardPage {
         this.driver = driver;
     }
 
-    public void selectGoodsItem() {
+    public void selectProductsItem() {
         WebDriverWait wait = new WebDriverWait(driver, 15);
         wait.until(ExpectedConditions.elementToBeClickable(catalogTab));
         WebElement tabElement = driver.findElement(catalogTab);
