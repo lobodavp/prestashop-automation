@@ -14,13 +14,14 @@ import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductName;
 public class AllProductsPage {
 
     private final EventFiringWebDriver driver;
-    private By name = By.xpath("*//div[@class='product-description'] / h1 / a[text()='" + newProductName + "']");
-    private By nextLink = By.cssSelector("a.next.js-search-link");
+    private final By name = By.xpath("*//div[@class='product-description'] / h1 / a[text()='" + newProductName + "']");
+    private final By nextLink = By.cssSelector("a.next.js-search-link");
 
     public AllProductsPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 
+    //todo the recursive calling of the method for a case more than one next page
     public void openNewProductPage() {
         scrollPageDown();
         WebDriverWait wait = new WebDriverWait(driver, 30);

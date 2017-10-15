@@ -7,8 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductsPage {
-    private EventFiringWebDriver driver;
-    private By addProductIcon = By.cssSelector("a#page-header-desc-configuration-add > span");
+    private final EventFiringWebDriver driver;
+    private final By addProductIcon = By.cssSelector("a#page-header-desc-configuration-add > span");
 
     public ProductsPage(EventFiringWebDriver driver) {
         this.driver = driver;

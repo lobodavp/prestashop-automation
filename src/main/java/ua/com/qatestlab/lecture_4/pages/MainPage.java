@@ -7,7 +7,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 public class MainPage {
 
     private final EventFiringWebDriver driver;
-    private By allProductsLink = By.cssSelector("section#content>section>a");
+    private final By allProductsLink = By.cssSelector("section#content>section>a");
 
     public MainPage(EventFiringWebDriver driver) {
         this.driver = driver;

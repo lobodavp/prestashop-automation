@@ -12,17 +12,17 @@ import java.text.DecimalFormat;
 import java.util.Random;
 
 public class MakeProductPage {
-    private EventFiringWebDriver driver;
-    private By productNameInput = By.cssSelector("#form_step1_name_1");
-    private By productQuantityLink = By.xpath("*//a[@href='#step3']");
-    private By productQuantityInput = By.cssSelector("input#form_step3_qty_0");
-    private By productPriceLink = By.xpath("*//a[@href='#step2']");
-    private By productPriceInput = By.cssSelector("#form_step2_price");
+    private final EventFiringWebDriver driver;
+    private final By productNameInput = By.cssSelector("#form_step1_name_1");
+    private final By productQuantityLink = By.xpath("*//a[@href='#step3']");
+    private final By productQuantityInput = By.cssSelector("input#form_step3_qty_0");
+    private final By productPriceLink = By.xpath("*//a[@href='#step2']");
+    private final By productPriceInput = By.cssSelector("#form_step2_price");
     //    private By productActivation = By.cssSelector("div.col-lg-5>div");
-    private By productActivation = By.cssSelector("div.switch-input");
-    private By confirmationMessage = By.cssSelector("#growls>div");
-    private By confirmationMessageX = By.cssSelector("#growls>div>div:nth-child(1)");
-    private By saveProductButton = By.cssSelector("div>button>span:nth-child(1)");
+    private final By productActivation = By.cssSelector("div.switch-input");
+    private final By confirmationMessage = By.cssSelector("#growls>div");
+    private final By confirmationMessageX = By.cssSelector("#growls>div>div:nth-child(1)");
+    private final By saveProductButton = By.cssSelector("div>button>span:nth-child(1)");
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
     static String newProductName;

@@ -8,8 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DashboardPage {
-    private EventFiringWebDriver driver;
-    private By catalogTab = By.cssSelector("#subtab-AdminCatalog");
+    private final EventFiringWebDriver driver;
+    private final By catalogTab = By.cssSelector("#subtab-AdminCatalog");
 
     public DashboardPage(EventFiringWebDriver driver){
         this.driver = driver;

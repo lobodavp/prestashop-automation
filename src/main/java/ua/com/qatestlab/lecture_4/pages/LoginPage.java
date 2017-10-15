@@ -5,10 +5,10 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import ua.com.qatestlab.lecture_4.utils.Properties;
 
 public class LoginPage {
-    private EventFiringWebDriver driver;
-    private By emailInput = By.id("email");
-    private By passwordInput = By.id("passwd");
-    private By loginBtn = By.name("submitLogin");
+    private final EventFiringWebDriver driver;
+    private final By emailInput = By.id("email");
+    private final By passwordInput = By.id("passwd");
+    private final By loginBtn = By.name("submitLogin");
 
     public LoginPage(EventFiringWebDriver driver){ this.driver = driver; }
 
