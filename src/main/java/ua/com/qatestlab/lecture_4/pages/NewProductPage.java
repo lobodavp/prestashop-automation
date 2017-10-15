@@ -14,8 +14,8 @@ import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductPrice;
 public class NewProductPage {
     private final EventFiringWebDriver driver;
     private final By currentName = By.cssSelector("h1.h1");
-    private final By currentQuantity = By.cssSelector("div.product-quantities>span");
     private final By currentPrice = By.cssSelector("div.current-price>span");
+    private final By currentQuantity = By.cssSelector("div.product-quantities>span");
 
     public NewProductPage(EventFiringWebDriver driver) {
         this.driver = driver;
@@ -30,15 +30,6 @@ public class NewProductPage {
         System.out.println("New product name is: " + currentName);
     }
 
-    public void checkProductQuantity() {
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-        wait.until(ExpectedConditions.presenceOfElementLocated(currentQuantity));
-        WebElement quantity = driver.findElement(currentQuantity);
-        String currentQuantity = quantity.getText().substring(0, 2).trim();
-        Assert.assertEquals(newProductQuantity, currentQuantity);
-        System.out.println("New product quantity is: " + currentQuantity);
-    }
-
     public void checkProductPrice() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(currentPrice));
@@ -48,5 +39,15 @@ public class NewProductPage {
         String currentPrice = price.getAttribute("content").replace(".", ",");
         Assert.assertEquals(newProductPrice, currentPrice);
         System.out.println("New product price is: " + currentPrice);
+    }
+
+    //todo string.format for one-digit quantity values ( from 1 till 9 ) to ( from 01 till 09)
+    public void checkProductQuantity() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.presenceOfElementLocated(currentQuantity));
+        WebElement quantity = driver.findElement(currentQuantity);
+        String currentQuantity = quantity.getText().substring(0, 2).trim();
+        Assert.assertEquals(newProductQuantity, currentQuantity);
+        System.out.println("New product quantity is: " + currentQuantity);
     }
 }

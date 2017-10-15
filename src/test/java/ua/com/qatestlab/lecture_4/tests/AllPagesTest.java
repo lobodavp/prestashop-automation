@@ -9,9 +9,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Reporter;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.Assert;
 
 import java.io.File;
@@ -24,32 +22,48 @@ public class AllPagesTest {
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
     private static String newProductName;
-    private static String newProductQuantity;
     private static String newProductPrice;
+    private static String newProductQuantity;
 
     @BeforeClass
     public void setup() {
+        Reporter.log("Setup driver in the system property <br />");
         System.setProperty(
                 "webdriver.chrome.driver",
                 new File(AllPagesTest.class.getResource("/chromedriver.exe").getFile()).getPath());
+        Reporter.log("Creating browser instance <br />");
         driver = new ChromeDriver();
+        Reporter.log("Setup implicitlyWait<br />");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Reporter.log("Maximaze browser window <br />");
         driver.manage().window().maximize();
     }
 
     @AfterClass
     public void tearDown() {
+        Reporter.log("Deleting all cookies <br />");
         driver.manage().deleteAllCookies();
+        Reporter.log("Closing browser <br />");
         driver.quit();
     }
 
-    //front-and
-    @Test
-    public void loginTest() {
+    //front-end
+    @DataProvider
+    public Object[][] getUser() {
+        return new String[][]{
+                {"webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw"}
+        };
+    }
+
+    @Test(dataProvider = "getUser")
+    public void loginTest(String login, String password) {
         driver.get("http://prestashop-automation.qatestlab.com.ua/admin147ajyvk0/");
         Reporter.log("Page title is: " + driver.getTitle() + " <br />");
-        driver.findElement(By.id("email")).sendKeys("webinar.test@gmail.com");
-        driver.findElement(By.id("passwd")).sendKeys("Xcg7299bnSmMuRLp9ITw");
+        Reporter.log("Filling email input <br />");
+        driver.findElement(By.id("email")).sendKeys(login);
+        Reporter.log("Filling password input <br />");
+        driver.findElement(By.id("passwd")).sendKeys(password);
+        Reporter.log("Clicking login button <br />");
         driver.findElement(By.name("submitLogin")).click();
 
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -64,6 +78,7 @@ public class AllPagesTest {
         WebElement tabElement = driver.findElement(By.cssSelector("#subtab-AdminCatalog"));
         Actions actions = new Actions(driver);
         actions.moveToElement(tabElement).build().perform();
+        Reporter.log("Clicking products link in the menu bar <br />");
         tabElement.findElements(By.cssSelector("li")).get(0).click();
     }
 
@@ -73,6 +88,7 @@ public class AllPagesTest {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("a#page-header-desc-configuration-add > span")));
         WebElement addProductElement = driver.findElement(By.cssSelector("a#page-header-desc-configuration-add > span"));
+        Reporter.log("Clicking add product link <br />");
         addProductElement.click();
     }
 
@@ -80,17 +96,20 @@ public class AllPagesTest {
     public void makeProductPageTest() {
         Reporter.log("Page title is: " + driver.getTitle() + " <br />");
 //fillNewProductNameInput
+        Reporter.log("Filling product name input <br />");
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#form_step1_name_1")));
         WebElement productNameInputElement = driver.findElement(By.cssSelector("#form_step1_name_1"));
         productNameInputElement.sendKeys(getRandomProductName());
 
 //clickProductQuantityLink
+        Reporter.log("Clicking quantity link <br />");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("*//a[@href='#step3']")));
         WebElement productQuantityInputLink = driver.findElement(By.xpath("*//a[@href='#step3']"));
         productQuantityInputLink.click();
 
 //fillProductQuantityInput
+        Reporter.log("Filling product quantity input <br />");
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("input#form_step3_qty_0")));
         WebElement productQuantityInputElement = driver.findElement(By.cssSelector("input#form_step3_qty_0"));
         Actions action = new Actions(driver);
@@ -99,11 +118,13 @@ public class AllPagesTest {
         productQuantityInputElement.sendKeys(getRandomProductQuantity());
 
 //clickPriceLink
+        Reporter.log("Clicking price link <br />");
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath("*//a[@href='#step2']")));
         WebElement productPriceLinkElement = driver.findElement(By.xpath("*//a[@href='#step2']"));
         productPriceLinkElement.click();
 
 //fillProductPriceInput
+        Reporter.log("Filling product price input <br />");
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#form_step2_price")));
         WebElement productPriceInputElement = driver.findElement(By.cssSelector("#form_step2_price"));
         Actions action1 = new Actions(driver);
@@ -112,12 +133,14 @@ public class AllPagesTest {
         productPriceInputElement.sendKeys(getRandomProductPrice().toString());
 
 //activateProduct
+        Reporter.log("Activating product <br />");
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div.switch-input")));
         WebElement productActivateElement = driver.findElement(By.cssSelector("div.switch-input"));
         productActivateElement.click();
         closeConfirmationMessage();
 
 //pushSaveProductButton
+        Reporter.log("Pushing product button <br />");
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div>button>span:nth-child(1)")));
         WebElement saveProductButtonElement = driver.findElement(By.cssSelector("div>button>span:nth-child(1)"));
         saveProductButtonElement.submit();
@@ -125,12 +148,13 @@ public class AllPagesTest {
         closeConfirmationMessage();
     }
 
-    //back-and
+    //back-end
     @Test(dependsOnMethods = "makeProductPageTest")
     public void mainPageTest() {
         driver.get("http://prestashop-automation.qatestlab.com.ua/");
         Reporter.log("Page title is: " + driver.getTitle() + " <br />");
 //clickAllProductsLink
+        Reporter.log("Clicking AllProducts page link <br />");
         driver.findElement(By.cssSelector("section#content>section>a")).click();
     }
 
@@ -138,7 +162,9 @@ public class AllPagesTest {
     public void allProductsPageTest() {
         Reporter.log("Page title is: " + driver.getTitle() + " <br />");
 //openNewProductPage
+        Reporter.log("Scrolling page down <br />");
         scrollPageDown();
+        Reporter.log("Clicking product page link <br />");
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("a.next.js-search-link")));
         WebElement nextProductsPageLink = driver.findElement(By.cssSelector("a.next.js-search-link"));
@@ -153,28 +179,31 @@ public class AllPagesTest {
     public void newProductPageTest() {
         Reporter.log("Page title is: " + driver.getTitle() + " <br />");
 //checkProductName
+        Reporter.log("Check product name <br />");
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1.h1")));
         WebElement name = driver.findElement(By.cssSelector("h1.h1"));
         String currentName = name.getText().toLowerCase();
-        Assert.assertEquals(newProductName, currentName);
+        Assert.assertEquals(newProductName, currentName, "Wrong current name is shown at the product page!");
         Reporter.log("New product name is: " + currentName + " <br />");
 
-//checkProductQuantity
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.product-quantities>span")));
-        WebElement quantity = driver.findElement(By.cssSelector("div.product-quantities>span"));
-        String currentQuantity = quantity.getText().substring(0, 2).trim();
-        Assert.assertEquals(newProductQuantity, currentQuantity);
-        Reporter.log("New product quantity is: " + currentQuantity + " <br />");
-
 //checkProductPrice
+        Reporter.log("Check product price <br />");
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.current-price>span")));
         WebElement price = driver.findElement(By.cssSelector("div.current-price>span"));
 //        String currentPrice = price.getText().substring(0, 5);
 //        Assert.assertEquals(newProductPrice, currentPrice);
         String currentPrice = price.getAttribute("content").replace(".", ",");
-        Assert.assertEquals(newProductPrice, currentPrice);
+        Assert.assertEquals(newProductPrice, currentPrice, "Wrong current price is shown at the product page!");
         Reporter.log("New product price is: " + currentPrice + " <br />");
+
+//checkProductQuantity
+        Reporter.log("Check product quantity <br />");
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.product-quantities>span")));
+        WebElement quantity = driver.findElement(By.cssSelector("div.product-quantities>span"));
+        String currentQuantity = quantity.getText().substring(0, 2).trim();
+        Assert.assertEquals(newProductQuantity, currentQuantity, "Wrong current quantity is shown at the product page!");
+        Reporter.log("New product quantity is: " + currentQuantity + " <br />");
     }
 
     private String getRandomProductName() {
@@ -186,7 +215,7 @@ public class AllPagesTest {
         }
 
         newProductName = productName.toString();
-        System.out.println("New product name is: " + newProductName);
+        Reporter.log("New product name is: " + newProductName + " <br />");
         return newProductName;
     }
 
@@ -223,10 +252,10 @@ public class AllPagesTest {
         WebElement message = driver.findElement(By.cssSelector("#growls>div"));
         Reporter.log("confirmation message has the text: " + message.getText() + " <br />");
         Assert.assertEquals("×\n" +
-                "Настройки обновлены.", message.getText());
+                "Настройки обновлены.", message.getText(), "Confirmation message 'Настройки обновлены.' isn't shown");
         WebElement messageX = driver.findElement(By.cssSelector("#growls>div>div:nth-child(1)"));
         Reporter.log("messageX has the text: " + messageX.getText() + " <br />");
-        Assert.assertEquals("×", messageX.getText());
+        Assert.assertEquals("×", messageX.getText(), "WebElement messageX '×' isn't found");
         action.moveToElement(messageX).click().perform();
         Reporter.log("confirmation message closed" + " <br />");
     }
