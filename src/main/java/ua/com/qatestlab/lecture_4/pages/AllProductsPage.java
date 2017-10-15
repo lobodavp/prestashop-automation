@@ -15,14 +15,32 @@ public class AllProductsPage {
 
     private final EventFiringWebDriver driver;
     private By name = By.xpath("*//div[@class='product-description'] / h1 / a[text()='" + newProductName + "']");
+    private By nextLink = By.cssSelector("a.next.js-search-link");
 
     public AllProductsPage(EventFiringWebDriver driver) {
         this.driver = driver;
     }
 
-    //todo: to add in the method a cycle for clicking next page if the element isn't found at the current page
     public void openNewProductPage() {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
+        scrollPageDown();
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.presenceOfElementLocated(nextLink));
+        WebElement nextProductsPageLink = driver.findElement(nextLink);
+        if (nextProductsPageLink.isEnabled()) {
+            clickNextProductsPageLink();
+            clickNewProductPageLink();
+        } else clickNewProductPageLink();
+    }
+
+    private void clickNextProductsPageLink() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.elementToBeClickable(nextLink));
+        WebElement nextProductsPageLink = driver.findElement(nextLink);
+        nextProductsPageLink.click();
+    }
+
+    private void clickNewProductPageLink() {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.elementToBeClickable(name));
         Actions action = new Actions(driver);
         WebElement productName = driver.findElement(name);
@@ -40,7 +58,7 @@ public class AllProductsPage {
         return new String(array);
     }
 
-    public boolean scrollPageDown() {
+    private boolean scrollPageDown() {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         boolean scrollResult = (boolean) executor.executeScript(
                 "var scrollBefore = $(window).scrollTop();" +
