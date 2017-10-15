@@ -42,9 +42,6 @@ public class MyTest extends BaseTest {
         AllProductsPage allProductsPage = new AllProductsPage(driver);
         System.out.println("Page title is: " + driver.getTitle());
         allProductsPage.openNewProductPage();
-//        allProductsPage.scrollPageDown();
-//        allProductsPage.clickNextProductsPageLink();
-//        allProductsPage.clickNewProductPageLink();
 
         NewProductPage newProductPage = new NewProductPage(driver);
         System.out.println("Page title is: " + driver.getTitle());
