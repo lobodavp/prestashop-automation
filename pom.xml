@@ -6,6 +6,8 @@
     <artifactId>prestashop-automation</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
+    <name>prestashop-automation</name>
+    <url>http://maven.apache.org</url>
 
     <build>
         <plugins>
@@ -43,9 +45,6 @@
         </plugins>
 
     </build>
-
-    <name>prestashop-automation</name>
-    <url>http://maven.apache.org</url>
 
     <dependencies>
 
