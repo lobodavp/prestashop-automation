@@ -1,8 +1,8 @@
-package ua.com.qatestlab.lecture_4.pages;
+package ua.com.qatestlab.lecture_5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import ua.com.qatestlab.lecture_4.utils.Properties;
+import ua.com.qatestlab.lecture_5.utils.Properties;
 
 public class LoginPage {
     private final EventFiringWebDriver driver;

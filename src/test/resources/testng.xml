@@ -15,9 +15,9 @@
         <parameter name="pIEFile" value="/IEDriverServer.exe">IEFile</parameter>
         <parameter name="pIEProp" value="webdriver.ie.driver">IEProperty</parameter>
         <classes>
-            <class name="ua.com.qatestlab.lecture_4.tests.AllPagesChromeTest"/>
-            <class name="ua.com.qatestlab.lecture_4.tests.AllPagesFirefoxTest"/>
-            <class name="ua.com.qatestlab.lecture_4.tests.AllPagesIETest"/>
+            <class name="ua.com.qatestlab.lecture_5.tests.AllPagesChromeTest"/>
+            <class name="ua.com.qatestlab.lecture_5.tests.AllPagesFirefoxTest"/>
+            <class name="ua.com.qatestlab.lecture_5.tests.AllPagesIETest"/>
         </classes>
     </test>
 </suite>

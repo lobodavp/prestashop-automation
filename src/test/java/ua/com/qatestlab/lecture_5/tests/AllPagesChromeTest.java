@@ -1,4 +1,4 @@
-package ua.com.qatestlab.lecture_4.tests;
+package ua.com.qatestlab.lecture_5.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,7 +17,7 @@ import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class AllPagesIETest {
+public class AllPagesChromeTest {
     private WebDriver driver;
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
@@ -25,12 +25,12 @@ public class AllPagesIETest {
     private static String newProductPrice;
     private static String newProductQuantity;
 
-    @Parameters(value = {"pIEProp", "pIEFile"})
+    @Parameters(value = {"pChromeProp", "pChromeFile"})
     @BeforeClass
-    public void setup(String IEProp, String IEFile) {
+    public void setup(String chromeProp, String chromeFile) {
         Reporter.log("Setup driver in the system property <br />");
-        System.setProperty(IEProp,
-                new File(AllPagesIETest.class.getResource(IEFile).getFile()).getPath());
+        System.setProperty(chromeProp,
+                new File(AllPagesChromeTest.class.getResource(chromeFile).getFile()).getPath());
         Reporter.log("Creating browser instance <br />");
         driver = new ChromeDriver();
         Reporter.log("Setup implicitlyWait<br />");
@@ -132,7 +132,7 @@ public class AllPagesIETest {
         Actions action1 = new Actions(driver);
         WebElement element1 = driver.findElement(By.cssSelector("#form_step2_price"));
         action1.doubleClick(element1).perform();
-        productPriceInputElement.sendKeys(getRandomProductPrice().toString());
+        productPriceInputElement.sendKeys(getRandomProductPrice());
 
 //activateProduct
         Reporter.log("Activating product <br />");

@@ -1,4 +1,4 @@
-package ua.com.qatestlab.lecture_4.pages;
+package ua.com.qatestlab.lecture_5.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductName;
+import static ua.com.qatestlab.lecture_5.pages.MakeProductPage.newProductName;
 
 public class AllProductsPage {
 

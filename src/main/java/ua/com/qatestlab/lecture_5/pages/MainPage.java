@@ -1,6 +1,6 @@
-package ua.com.qatestlab.lecture_4.pages;
+package ua.com.qatestlab.lecture_5.pages;
 
-import ua.com.qatestlab.lecture_4.utils.Properties;
+import ua.com.qatestlab.lecture_5.utils.Properties;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 

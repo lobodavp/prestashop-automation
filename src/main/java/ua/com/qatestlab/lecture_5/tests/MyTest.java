@@ -1,7 +1,7 @@
-package ua.com.qatestlab.lecture_4.tests;
+package ua.com.qatestlab.lecture_5.tests;
 
 import org.openqa.selenium.support.events.EventFiringWebDriver;
-import ua.com.qatestlab.lecture_4.pages.*;
+import ua.com.qatestlab.lecture_5.pages.*;
 
 public class MyTest extends BaseTest {
 

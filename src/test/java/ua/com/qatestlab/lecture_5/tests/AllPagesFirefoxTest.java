@@ -1,4 +1,4 @@
-package ua.com.qatestlab.lecture_4.tests;
+package ua.com.qatestlab.lecture_5.tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

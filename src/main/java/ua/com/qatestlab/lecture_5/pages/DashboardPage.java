@@ -1,4 +1,4 @@
-package ua.com.qatestlab.lecture_4.pages;
+package ua.com.qatestlab.lecture_5.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
