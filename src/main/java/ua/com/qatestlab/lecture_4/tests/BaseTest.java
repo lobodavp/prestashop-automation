@@ -36,6 +36,13 @@ public abstract class BaseTest {
                         "webdriver.chrome.driver",
                         new File(BaseTest.class.getResource("/chromedriver.exe").getFile()).getPath());
                 return new ChromeDriver();
+
+            case "phantom":
+//                System.setProperty("phantomjs.binary.path", "C:\\Program Files\\Java\\web-drivers\\phantomjs.exe");
+                System.setProperty(
+                        "phantomjs.binary.path",
+                        new File(BaseTest.class.getResource("/phantomjs.exe").getFile()).getPath());
+                return new ChromeDriver();
         }
     }
 
