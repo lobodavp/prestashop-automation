@@ -8,16 +8,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.*;
-import org.testng.Assert;
 
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class AllPagesTest {
+public class AllPagesChromeTest {
     private WebDriver driver;
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
@@ -30,7 +30,7 @@ public class AllPagesTest {
     public void setup(String chromeProp, String chromeFile) {
         Reporter.log("Setup driver in the system property <br />");
         System.setProperty(chromeProp,
-                new File(AllPagesTest.class.getResource(chromeFile).getFile()).getPath());
+                new File(AllPagesChromeTest.class.getResource(chromeFile).getFile()).getPath());
         Reporter.log("Creating browser instance <br />");
         driver = new ChromeDriver();
         Reporter.log("Setup implicitlyWait<br />");
