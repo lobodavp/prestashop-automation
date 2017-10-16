@@ -7,7 +7,7 @@
     <parameter name="pFirefoxProp" value="webdriver.gecko.driver"/>
     <parameter name="pIEFile" value="/IEDriverServer.exe"/>
     <parameter name="pIEProp" value="webdriver.ie.driver"/>
-    <test name="HomeWork4">
+    <test name="HomeWork5">
         <parameter name="pChromeFile" value="/chromedriver.exe">ChromeFile</parameter>
         <parameter name="pChromeProp" value="webdriver.chrome.driver">ChromeProertyp</parameter>
         <parameter name="pFirefoxFile" value="/geckodriver.exe">FirefoxFile</parameter>
