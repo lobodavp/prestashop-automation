@@ -132,7 +132,7 @@ public class AllPagesChromeTest {
         Actions action1 = new Actions(driver);
         WebElement element1 = driver.findElement(By.cssSelector("#form_step2_price"));
         action1.doubleClick(element1).perform();
-        productPriceInputElement.sendKeys(getRandomProductPrice().toString());
+        productPriceInputElement.sendKeys(getRandomProductPrice());
 
 //activateProduct
         Reporter.log("Activating product <br />");
@@ -157,6 +157,7 @@ public class AllPagesChromeTest {
 //clickAllProductsLink
         Reporter.log("Clicking AllProducts page link <br />");
         driver.findElement(By.cssSelector("section#content>section>a")).click();
+        Reporter.log("AllProducts page link was clicked<br />");
     }
 
     //front-end
@@ -211,7 +212,7 @@ public class AllPagesChromeTest {
     //back-end
     private String getRandomProductName() {
         String s = "abcdefgh";
-        StringBuffer productName = new StringBuffer();
+        StringBuilder productName = new StringBuilder();
 
         for (int i = 0; i < PRODUCT_NAME_LENGTH; i++) {
             productName.append(s.charAt(new Random().nextInt(s.length())));
@@ -224,13 +225,13 @@ public class AllPagesChromeTest {
 
     private String getRandomProductQuantity() {
         String s = "0123456789";
-        StringBuffer productQuantity = new StringBuffer();
+        StringBuilder productQuantity = new StringBuilder();
 
         for (int i = 0; i < PRODUCT_QUANTITY_LENGTH; i++) {
             productQuantity.append(s.charAt(new Random().nextInt(s.length())));
         }
-        if (productQuantity.toString() == "00") getRandomProductQuantity();
-        if (productQuantity.toString() == "0") getRandomProductQuantity();
+        if ("00" == productQuantity.toString()) getRandomProductQuantity();
+        if ("0" == productQuantity.toString()) getRandomProductQuantity();
 
         newProductQuantity = productQuantity.toString();
         Reporter.log("Product quantity is: " + newProductQuantity + " <br />");

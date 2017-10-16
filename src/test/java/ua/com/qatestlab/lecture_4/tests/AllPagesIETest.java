@@ -157,6 +157,7 @@ public class AllPagesIETest {
 //clickAllProductsLink
         Reporter.log("Clicking AllProducts page link <br />");
         driver.findElement(By.cssSelector("section#content>section>a")).click();
+        Reporter.log("AllProducts page link was clicked<br />");
     }
 
     //front-end
@@ -211,7 +212,7 @@ public class AllPagesIETest {
     //back-end
     private String getRandomProductName() {
         String s = "abcdefgh";
-        StringBuffer productName = new StringBuffer();
+        StringBuilder productName = new StringBuilder();
 
         for (int i = 0; i < PRODUCT_NAME_LENGTH; i++) {
             productName.append(s.charAt(new Random().nextInt(s.length())));
@@ -224,13 +225,13 @@ public class AllPagesIETest {
 
     private String getRandomProductQuantity() {
         String s = "0123456789";
-        StringBuffer productQuantity = new StringBuffer();
+        StringBuilder productQuantity = new StringBuilder();
 
         for (int i = 0; i < PRODUCT_QUANTITY_LENGTH; i++) {
             productQuantity.append(s.charAt(new Random().nextInt(s.length())));
         }
-        if (productQuantity.toString() == "00") getRandomProductQuantity();
-        if (productQuantity.toString() == "0") getRandomProductQuantity();
+        if ("00" == productQuantity.toString()) getRandomProductQuantity();
+        if ("0" == productQuantity.toString()) getRandomProductQuantity();
 
         newProductQuantity = productQuantity.toString();
         Reporter.log("Product quantity is: " + newProductQuantity + " <br />");
@@ -253,14 +254,14 @@ public class AllPagesIETest {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#growls>div>div:nth-child(1)")));
         Actions action = new Actions(driver);
         WebElement message = driver.findElement(By.cssSelector("#growls>div"));
-        Reporter.log("confirmation message has the text: " + message.getText() + " <br />");
+        Reporter.log("Confirmation message 'Настройки обновлены.' was found, it has the text: " + message.getText() + " <br />");
         Assert.assertEquals("×\n" +
                 "Настройки обновлены.", message.getText(), "Confirmation message 'Настройки обновлены.' isn't shown");
         WebElement messageX = driver.findElement(By.cssSelector("#growls>div>div:nth-child(1)"));
-        Reporter.log("messageX has the text: " + messageX.getText() + " <br />");
+        Reporter.log("WebElement messageX was found, it has the text: " + messageX.getText() + " <br />");
         Assert.assertEquals("×", messageX.getText(), "WebElement messageX '×' isn't found");
         action.moveToElement(messageX).click().perform();
-        Reporter.log("confirmation message closed" + " <br />");
+        Reporter.log("Confirmation message " + message.getText() + " closed" + " <br />");
     }
 
     //front-end
