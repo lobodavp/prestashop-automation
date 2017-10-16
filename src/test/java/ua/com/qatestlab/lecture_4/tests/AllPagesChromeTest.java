@@ -253,14 +253,14 @@ public class AllPagesChromeTest {
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#growls>div>div:nth-child(1)")));
         Actions action = new Actions(driver);
         WebElement message = driver.findElement(By.cssSelector("#growls>div"));
-        Reporter.log("confirmation message has the text: " + message.getText() + " <br />");
+        Reporter.log("Confirmation message 'Настройки обновлены.' was found, it has the text: " + message.getText() + " <br />");
         Assert.assertEquals("×\n" +
                 "Настройки обновлены.", message.getText(), "Confirmation message 'Настройки обновлены.' isn't shown");
         WebElement messageX = driver.findElement(By.cssSelector("#growls>div>div:nth-child(1)"));
-        Reporter.log("messageX has the text: " + messageX.getText() + " <br />");
+        Reporter.log("WebElement messageX was found, it has the text: " + messageX.getText() + " <br />");
         Assert.assertEquals("×", messageX.getText(), "WebElement messageX '×' isn't found");
         action.moveToElement(messageX).click().perform();
-        Reporter.log("confirmation message closed" + " <br />");
+        Reporter.log("Confirmation message " + message.getText() + " closed" + " <br />");
     }
 
     //front-end
