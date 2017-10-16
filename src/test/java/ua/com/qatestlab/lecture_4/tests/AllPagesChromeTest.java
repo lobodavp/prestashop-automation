@@ -157,6 +157,7 @@ public class AllPagesChromeTest {
 //clickAllProductsLink
         Reporter.log("Clicking AllProducts page link <br />");
         driver.findElement(By.cssSelector("section#content>section>a")).click();
+        Reporter.log("AllProducts page link was clicked<br />");
     }
 
     //front-end
