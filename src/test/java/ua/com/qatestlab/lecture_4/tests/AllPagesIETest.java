@@ -5,6 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -32,7 +33,7 @@ public class AllPagesIETest {
         System.setProperty(IEProp,
                 new File(AllPagesIETest.class.getResource(IEFile).getFile()).getPath());
         Reporter.log("Creating browser instance <br />");
-        driver = new ChromeDriver();
+        driver = new InternetExplorerDriver();
         Reporter.log("Setup implicitlyWait<br />");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Reporter.log("Maximaze browser window <br />");
