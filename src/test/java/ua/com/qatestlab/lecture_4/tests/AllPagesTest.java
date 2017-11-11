@@ -5,19 +5,22 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.*;
+import ua.com.qatestlab.lecture_4.utils.Properties;
 
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-public class AllPagesChromeTest {
+public class AllPagesTest {
     private WebDriver driver;
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
@@ -25,14 +28,33 @@ public class AllPagesChromeTest {
     private static String newProductPrice;
     private static String newProductQuantity;
 
-    @Parameters(value = {"pChromeProp", "pChromeFile"})
+    @Parameters(value = {"browser"})
     @BeforeClass
-    public void setup(String chromeProp, String chromeFile) {
+    public void setUp(String browser) {
         Reporter.log("Setup driver in the system property <br />");
-        System.setProperty(chromeProp,
-                new File(AllPagesChromeTest.class.getResource(chromeFile).getFile()).getPath());
-        Reporter.log("Creating browser instance <br />");
-        driver = new ChromeDriver();
+        browser = Properties.getBrowser();
+        switch (browser) {
+            case "firefox":
+                System.setProperty(
+                        "webdriver.gecko.driver",
+                        new File(AllPagesTest.class.getResource("/geckodriver.exe").getFile()).getPath());
+                Reporter.log("Creating " + browser + " browser instance <br />");
+                driver = new FirefoxDriver();
+            case "ie":
+            case "internet explorer":
+                System.setProperty(
+                        "webdriver.ie.driver",
+                        new File(AllPagesTest.class.getResource("/IEDriverServer.exe").getFile()).getPath());
+                Reporter.log("Creating " + browser + " browser instance <br />");
+                driver = new InternetExplorerDriver();
+            case "chrome":
+            default:
+                System.setProperty(
+                        "webdriver.chrome.driver",
+                        new File(AllPagesTest.class.getResource("/chromedriver.exe").getFile()).getPath());
+                Reporter.log("Creating " + browser + " browser instance <br />");
+                driver = new ChromeDriver();
+        }
         Reporter.log("Setup implicitlyWait<br />");
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         Reporter.log("Maximaze browser window <br />");

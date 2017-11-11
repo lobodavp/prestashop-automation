@@ -33,6 +33,7 @@ public class EventHandler implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateBack(WebDriver webDriver) {
+        System.out.println("Returned to the previous page: " + webDriver.getTitle());
     }
 
     @Override

@@ -42,15 +42,20 @@ public abstract class BaseTest {
     public static EventFiringWebDriver getConfiguredDriver() {
         WebDriver driver = getDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         EventFiringWebDriver wrappedDriver = new EventFiringWebDriver(driver);
         wrappedDriver.register(new EventHandler());
         return wrappedDriver;
     }
 
-    public static void quitDriver(WebDriver driver) {
-        driver.manage().deleteAllCookies();
-        driver.quit();
+//    public static void quitDriver(WebDriver driver) {
+//        driver.manage().deleteAllCookies();
+//        driver.quit();
+//    }
+
+    public static void quitWrappedDriver(WebDriver wrappedDriver) {
+        wrappedDriver.manage().deleteAllCookies();
+        wrappedDriver.quit();
     }
 }
 

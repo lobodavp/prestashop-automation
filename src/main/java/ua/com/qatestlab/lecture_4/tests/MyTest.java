@@ -5,7 +5,7 @@ import ua.com.qatestlab.lecture_4.pages.*;
 
 public class MyTest extends BaseTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         EventFiringWebDriver driver = getConfiguredDriver();
 
@@ -48,5 +48,11 @@ public class MyTest extends BaseTest {
         newProductPage.checkProductName();
         newProductPage.checkProductQuantity();
         newProductPage.checkProductPrice();
+        Thread.sleep(10000);
+        driver.navigate().back();
+        driver.navigate().back();
+        driver.navigate().back();
+
+//        quitWrappedDriver(driver);
     }
 }
