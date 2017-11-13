@@ -9,12 +9,10 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductName;
-
 public class AllProductsPage {
 
     private final EventFiringWebDriver driver;
-    private final By name = By.xpath("*//div[@class='product-description'] / h1 / a[text()='" + newProductName + "']");
+    private final By name = By.xpath("*//div[@class='product-description'] / h1 / a[text()='" + MakeProductPage.getNewProductName() + "']");
     private final By nextLink = By.cssSelector("a.next.js-search-link");
 
     public AllProductsPage(EventFiringWebDriver driver) {
@@ -46,7 +44,7 @@ public class AllProductsPage {
         wait.until(ExpectedConditions.elementToBeClickable(name));
         Actions action = new Actions(driver);
         WebElement productName = driver.findElement(name);
-        Assert.assertEquals(upperCaseFirst(newProductName), productName.getText());
+        Assert.assertEquals(upperCaseFirst(MakeProductPage.getNewProductName()), productName.getText());
         System.out.println("Product " + productName.getText() + " is shown at the " + driver.getTitle() + " page!");
         action.moveToElement(productName).click().perform();
     }

@@ -1,22 +1,22 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="SuiteHomeWork4" verbose="1" parallel="false">
-    <test name="Test case on Chrome" enabled="true">
+<suite name="SuiteHomeWork4" verbose="1" parallel="true">
+    <test name="Test case on Chrome" enabled="false">
         <parameter name="browser" value="chrome">Chrome</parameter>
         <classes>
             <class name="ua.com.qatestlab.lecture_4.tests.AllPagesTest"/>
         </classes>
     </test>
-    <test name="Test case on FF" enabled="true">
+    <test name="Test case on Firefox" enabled="true">
         <parameter name="browser" value="firefox">Firefox</parameter>
         <classes>
             <class name="ua.com.qatestlab.lecture_4.tests.AllPagesTest"/>
         </classes>
     </test>
-    <test name="Test case on IE" enabled="false">
-        <parameter name="browser" value="ie">IE</parameter>
-        <classes>
-            <class name="ua.com.qatestlab.lecture_4.tests.AllPagesTest"/>
-        </classes>
-    </test>
+    <!--<test name="Test case on IE" enabled="false">-->
+    <!--<parameter name="browser" value="ie">IE</parameter>-->
+    <!--<classes>-->
+    <!--<class name="ua.com.qatestlab.lecture_4.tests.AllPagesTest"/>-->
+    <!--</classes>-->
+    <!--</test>-->
 </suite>

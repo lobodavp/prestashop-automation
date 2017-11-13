@@ -25,9 +25,9 @@ public class MakeProductPage {
     private final By saveProductButton = By.cssSelector("div>button>span:nth-child(1)");
     private static final int PRODUCT_NAME_LENGTH = 8;
     private static final int PRODUCT_QUANTITY_LENGTH = 2;
-    static String newProductName;
-    static String newProductQuantity;
-    static String newProductPrice;
+    private static String newProductName;
+    private static String newProductQuantity;
+    private static String newProductPrice;
 
     public MakeProductPage(EventFiringWebDriver driver) {
         this.driver = driver;
@@ -143,6 +143,21 @@ public class MakeProductPage {
         Assert.assertEquals("×", messageX.getText());
         action.moveToElement(messageX).click().perform();
         System.out.println("confirmation message closed");
+    }
+
+    public static String getNewProductName() {
+        System.out.println("NewProductPage.newProductName is: " + newProductName);
+        return newProductName;
+    }
+
+    static String getNewProductQuantity() {
+        System.out.println("NewProductPage.newProductQuantity is: " + newProductQuantity);
+        return newProductQuantity;
+    }
+
+    static String getNewProductPrice() {
+        System.out.println("NewProductPage.newProductPrice is: " + newProductPrice);
+        return newProductPrice;
     }
 
 }

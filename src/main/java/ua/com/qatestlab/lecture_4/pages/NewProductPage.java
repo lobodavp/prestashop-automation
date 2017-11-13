@@ -7,10 +7,6 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductName;
-import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductQuantity;
-import static ua.com.qatestlab.lecture_4.pages.MakeProductPage.newProductPrice;
-
 public class NewProductPage {
     private final EventFiringWebDriver driver;
     private final By currentName = By.cssSelector("h1.h1");
@@ -26,10 +22,11 @@ public class NewProductPage {
         wait.until(ExpectedConditions.presenceOfElementLocated(currentName));
         WebElement name = driver.findElement(currentName);
         String currentName = name.getText().toLowerCase();
-        Assert.assertEquals(newProductName, currentName);
+        Assert.assertEquals(MakeProductPage.getNewProductName(), currentName);
         System.out.println("New product name is: " + currentName);
     }
 
+    //todo string.format for one-digit price values ( from 0.01 till 9 ) to ( from 0.01 till 09)
     public void checkProductPrice() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(currentPrice));
@@ -37,17 +34,19 @@ public class NewProductPage {
 //        String currentPrice = price.getText().substring(0, 5);
 //        Assert.assertEquals(newProductPrice, currentPrice);
         String currentPrice = price.getAttribute("content").replace(".", ",");
-        Assert.assertEquals(newProductPrice, currentPrice);
+        Assert.assertEquals(MakeProductPage.getNewProductPrice(), currentPrice);
         System.out.println("New product price is: " + currentPrice);
     }
 
-    //todo string.format for one-digit quantity values ( from 1 till 9 ) to ( from 01 till 09)
+    //todo string.format for one-digit quantity values ( from 1 till 9 ) to ( from 1 till 09)
     public void checkProductQuantity() {
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.presenceOfElementLocated(currentQuantity));
         WebElement quantity = driver.findElement(currentQuantity);
         String currentQuantity = quantity.getText().substring(0, 2).trim();
-        Assert.assertEquals(newProductQuantity, currentQuantity);
+        if (currentQuantity.startsWith("0")) currentQuantity.replace("0", "");
+
+        Assert.assertEquals(MakeProductPage.getNewProductQuantity(), currentQuantity);
         System.out.println("New product quantity is: " + currentQuantity);
     }
 }

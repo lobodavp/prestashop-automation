@@ -49,10 +49,24 @@ public class MyTest extends BaseTest {
         newProductPage.checkProductQuantity();
         newProductPage.checkProductPrice();
         Thread.sleep(10000);
-        driver.navigate().back();
-        driver.navigate().back();
-        driver.navigate().back();
 
-//        quitWrappedDriver(driver);
+//deleting new product from catalog page
+        loginPage.open();
+        System.out.println("Page title is: " + driver.getTitle());
+        dashboardPage.selectProductsItem();
+
+        System.out.println("Page title is: " + driver.getTitle());
+        productsPage.scrollPageDown();
+        productsPage.selectCheckbox();
+        productsPage.scrollPageUp();
+        productsPage.clickGroupActions();
+        productsPage.clickDeleteAllAction();
+        productsPage.clickConfirmButton();
+        Thread.sleep(10000);
+        productsPage.scrollPageDown();
+        Thread.sleep(10000);
+
+//closing browser
+        quitWrappedDriver(driver);
     }
 }

@@ -1,19 +1,17 @@
 package ua.com.qatestlab.lecture_4.tests;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.*;
-import ua.com.qatestlab.lecture_4.utils.Properties;
 
 import java.io.File;
 import java.text.DecimalFormat;
@@ -29,39 +27,46 @@ public class AllPagesTest {
     private static String newProductQuantity;
 
     @Parameters(value = {"browser"})
-    @BeforeClass
+    @BeforeTest
     public void setUp(String browser) {
         Reporter.log("Setup driver in the system property <br />");
-        browser = Properties.getBrowser();
+//        browser = Properties.getBrowser();
+        Reporter.log("Creating " + browser + " browser instance <br />");
         switch (browser) {
-            case "firefox":
-                System.setProperty(
-                        "webdriver.gecko.driver",
-                        new File(AllPagesTest.class.getResource("/geckodriver.exe").getFile()).getPath());
-                Reporter.log("Creating " + browser + " browser instance <br />");
-                driver = new FirefoxDriver();
-            case "ie":
-            case "internet explorer":
-                System.setProperty(
-                        "webdriver.ie.driver",
-                        new File(AllPagesTest.class.getResource("/IEDriverServer.exe").getFile()).getPath());
-                Reporter.log("Creating " + browser + " browser instance <br />");
-                driver = new InternetExplorerDriver();
             case "chrome":
-            default:
                 System.setProperty(
                         "webdriver.chrome.driver",
                         new File(AllPagesTest.class.getResource("/chromedriver.exe").getFile()).getPath());
-                Reporter.log("Creating " + browser + " browser instance <br />");
                 driver = new ChromeDriver();
+            case "firefox":
+            default:
+                System.setProperty(
+                        "webdriver.gecko.driver",
+                        new File(AllPagesTest.class.getResource("/geckodriver.exe").getFile()).getPath());
+//                FirefoxOptions options = new FirefoxOptions();
+//                options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"); //Location where Firefox is installed
+//                //set more capabilities as per your requirements
+//                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+//                capabilities.setCapability("moz:firefoxOptions", options);
+//                capabilities.setCapability(FirefoxDriver.MARIONETTE, true);
+//                capabilities.setPlatform(Platform.WIN8_1);
+//                driver = new FirefoxDriver(new FirefoxOptions(capabilities));
+                driver = new FirefoxDriver();
+//            case "ie":
+//            case "internet explorer":
+//                System.setProperty(
+//                        "webdriver.ie.driver",
+//                        new File(AllPagesTest.class.getResource("/IEDriverServer.exe").getFile()).getPath());
+//                driver = new InternetExplorerDriver();
         }
+        Reporter.log("The " + browser + " browser instance is created!<br />");
         Reporter.log("Setup implicitlyWait<br />");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         Reporter.log("Maximaze browser window <br />");
         driver.manage().window().maximize();
     }
 
-    @AfterClass
+    @AfterTest
     public void tearDown() {
         Reporter.log("Deleting all cookies <br />");
         driver.manage().deleteAllCookies();
@@ -103,7 +108,8 @@ public class AllPagesTest {
         Actions actions = new Actions(driver);
         actions.moveToElement(tabElement).build().perform();
         Reporter.log("Clicking products link in the menu bar <br />");
-        tabElement.findElements(By.cssSelector("li")).get(0).click();
+//        tabElement.findElements(By.cssSelector("li")).get(0).click();
+        tabElement.findElement(By.cssSelector("#subtab-AdminProducts>a")).click();
     }
 
     @Test(dependsOnMethods = "dashboardTest")
@@ -209,7 +215,7 @@ public class AllPagesTest {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("h1.h1")));
         WebElement name = driver.findElement(By.cssSelector("h1.h1"));
         String currentName = name.getText().toLowerCase();
-        Assert.assertEquals(newProductName, currentName, "Wrong current name is shown at the product page!");
+        Assert.assertEquals(currentName, newProductName, "Wrong current name is shown at the product page!");
         Reporter.log("New product name is: " + currentName + " <br />");
 
 //checkProductPrice
@@ -219,7 +225,7 @@ public class AllPagesTest {
 //        String currentPrice = price.getText().substring(0, 5);
 //        Assert.assertEquals(newProductPrice, currentPrice);
         String currentPrice = price.getAttribute("content").replace(".", ",");
-        Assert.assertEquals(newProductPrice, currentPrice, "Wrong current price is shown at the product page!");
+        Assert.assertEquals(currentPrice, newProductPrice, "Wrong current price is shown at the product page!");
         Reporter.log("New product price is: " + currentPrice + " <br />");
 
 //checkProductQuantity
@@ -227,7 +233,7 @@ public class AllPagesTest {
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("div.product-quantities>span")));
         WebElement quantity = driver.findElement(By.cssSelector("div.product-quantities>span"));
         String currentQuantity = quantity.getText().substring(0, 2).trim();
-        Assert.assertEquals(newProductQuantity, currentQuantity, "Wrong current quantity is shown at the product page!");
+        Assert.assertEquals(currentQuantity, newProductQuantity, "Wrong current quantity is shown at the product page!");
         Reporter.log("New product quantity is: " + currentQuantity + " <br />");
     }
 

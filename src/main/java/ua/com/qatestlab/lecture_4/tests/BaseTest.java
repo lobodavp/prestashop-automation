@@ -1,9 +1,12 @@
 package ua.com.qatestlab.lecture_4.tests;
 
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import ua.com.qatestlab.lecture_4.utils.Properties;
 import ua.com.qatestlab.lecture_4.utils.EventHandler;
@@ -21,7 +24,14 @@ public abstract class BaseTest {
                 System.setProperty(
                         "webdriver.gecko.driver",
                         new File(BaseTest.class.getResource("/geckodriver.exe").getFile()).getPath());
-                return new FirefoxDriver();
+                FirefoxOptions options = new FirefoxOptions();
+                options.setBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe"); //Location where Firefox is installed
+                //set more capabilities as per your requirements
+                DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+                capabilities.setCapability("moz:firefoxOptions", options);
+                capabilities.setCapability(FirefoxDriver.MARIONETTE, true);
+                capabilities.setPlatform(Platform.WIN8_1);
+                return new FirefoxDriver(new FirefoxOptions(capabilities));
             case "ie":
             case "internet explorer":
 //                System.setProperty("webdriver.ie.driver", "C:\\Program Files\\Java\\web-drivers\\IEDriverServer.exe");
